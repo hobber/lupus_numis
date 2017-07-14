@@ -22,7 +22,11 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
       mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
       mongoPassword = process.env[mongoServiceName + '_PASSWORD']
       mongoUser = process.env[mongoServiceName + '_USER'];
-
+  console.log('MONGO DATABASE:', mongoDatabase);
+  console.log('MONGO PASSWORD:', mongoPassword);
+  console.log('MONGO USER:', mongoUser);
+  console.log('MONGO HOST:', mongoHost);
+  console.log('MONGO PORT:', mongoPort);
   if (mongoHost && mongoPort && mongoDatabase) {
     mongoURLLabel = mongoURL = 'mongodb://';
     if (mongoUser && mongoPassword) {
@@ -42,7 +46,7 @@ var initDb = function(callback) {
 
   var mongodb = require('mongodb');
   if (mongodb == null) return;
-
+console.log('MONGO URL:', mongoURL);
   mongodb.connect(mongoURL, function(err, conn) {
     if (err) {
       callback(err);
